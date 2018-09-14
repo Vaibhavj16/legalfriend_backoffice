@@ -15,102 +15,14 @@ const featureShellRoutes: Routes = [
        
         path: '',
         component: FeatureShellComponent, canActivate: [LFAuthantication], children: [
-            // {
-            //     path: 'user', loadChildren: 'app/feature-shell/user/user.module#UserModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'ADMIN_LAWYER']
-            //         }
-            //     }
-            // },
-            // {
-            //     path: 'feedback', loadChildren: 'app/feature-shell/feedback/feedback.module#FeedbackModule',
-            // },
-            // {
-            //     path: 'billing', loadChildren: 'app/feature-shell/billing/billing.module#BillingModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'ADMIN_LAWYER']
-            //         }
-            //     }
-            // },
-            // {
-            //     path: 'case', loadChildren: 'app/feature-shell/case/case.module#CaseModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'EMPLOYEE_LAWYER_FIRM',
-            //                 'ADMIN_LAWYER', 'MANAGER_LAWYER', 'EMPLOYEE_LAWYER',
-            //                 'CLIENT_LAWYER_Individual', 'CLIENT_LAWYER_Institutional', 'CLIENT_LAWYER_FIRM_Individual']
-            //         }
-            //     },
-            // },
-            // {
-            //     path: 'master',
-            //     loadChildren: 'app/feature-shell/master/master.module#MasterModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'ADMIN_LAWYER']
-            //         }
-            //     },
-            // },
-            // {
-            //     // tslint:disable-next-line:max-line-length
-            //     path: 'institution', loadChildren: 'app/feature-shell/institution/institution.module#InstitutionModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'EMPLOYEE_LAWYER_FIRM', 'CLIENT_LAWYER_FIRM_Institutional']
-            //         }
-            //     },
-            // },
             { path: 'profile', loadChildren: 'app/feature-shell/profile/profile.module#ProfileModule' },
-            // { path: 'Referral', loadChildren: 'app/feature-shell/referral/referral.module#ReferralModule' },
-            //{ path: 'Notification', loadChildren: 'app/feature-shell/notification/notification.module#NotificationModule' },
-            // { path: 'wallet', loadChildren: 'app/feature-shell/wallet/wallet.module#WalletModule' },
             { path: 'dashboard', component: SystemdashboardComponent },
             { path: 'userdetails', component: UserdetailComponent },
             { path: 'orgdetails', component: OrganizationdetailComponent },
             { path: '', loadChildren: 'app/feature-shell/admin/admin.module#AdminModule' },
-            // {
-            //     path: 'xdashboard',
-            //     loadChildren: 'app/feature-shell/dashboard/dashboard.module#DashboardModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'EMPLOYEE_LAWYER_FIRM',
-            //                 'ADMIN_LAWYER', 'MANAGER_LAWYER', 'EMPLOYEE_LAWYER']
-            //         }
-            //     }
-            // },
-            // {
-            //     path: 'calendar', component: CalendarComponent,
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'EMPLOYEE_LAWYER_FIRM',
-            //                 'ADMIN_LAWYER', 'MANAGER_LAWYER', 'EMPLOYEE_LAWYER']
-            //         }
-            //     },
-            // },
-           // { path: 'employeeactive', component: EmployeeActiveComponent },
             { path: '', redirectTo: 'backoffice', pathMatch: 'full' },
-            // {
-            //     path: 'invoices', loadChildren: 'app/feature-shell/invoices/invoice.module#invoiceModule',
-            //     canActivate: [NgxPermissionsGuard],
-            //     data: {
-            //         permissions: {
-            //             only: ['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM']
-            //         }
-            //     },
-            // },
         ],
-        
-
-    },
+        },
    
 ];
 

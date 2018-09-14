@@ -1,0 +1,30 @@
+<div class="box box-info">
+  <div class="box-header">
+      <i class="fa fa-inbox"></i>
+      <h3 class="box-title">Against Institution</h3>
+      <div class="graph-filter pull-right">
+        <ul class="pagination pagination-sm inline">
+          <li>
+            <a id="branchBillYear" [style.background-color]="yearColor" (click)="selectAgainstCaseTab('year');">
+              <b>Yearly</b>
+            </a>
+          </li>
+          <li>
+            <a id="branchBillMonth" [style.background-color]="dateColor" (click)="selectAgainstCaseTab('date');">
+              <b>DateWise</b>
+            </a>
+          </li>
+        </ul>
+        <div class="input-group pull-right" style="width:250px">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <input type="text" class="form-control pull-right" [ngModel]='againstselectedYear' [ngClass]="{ 'hide' :selectedTab!='year'}" id="againstyearpicker">
+          <input type="text" class="form-control pull-right" [ngClass]="{ 'hide' :selectedTab=='year'}" id="againstforcasesFilter">
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <canvas id="againstcases-chart" style="height: 450px; width: 950px;"></canvas>
+    </div>
+  </div>

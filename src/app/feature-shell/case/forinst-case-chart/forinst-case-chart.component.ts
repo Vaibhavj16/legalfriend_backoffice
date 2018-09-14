@@ -1,91 +1,85 @@
 import { Chart } from 'chart.js';
 import { CaseService } from './../case.service';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 declare let $;
-
 @Component({
-  selector: 'app-case-chart',
-  templateUrl: './case-chart.component.html',
-  styleUrls: ['./case-chart.component.css'],
+  selector: 'app-forinst-case-chart',
+  templateUrl: './forinst-case-chart.component.html',
+  styleUrls: ['./forinst-case-chart.component.css'],
   providers: [CaseService]
 })
-export class CaseChartComponent implements OnInit {
+export class ForinstCaseChartComponent implements OnInit {
 
   data = [];
   selectedYear: string;
   selectedTab: string = 'year';
   yearColor: string = 'orange';
   dateColor: string = '';
-  years = [];
-  minYear = 2015;
   endDate: string = '';
-  caseschart;
+  forcaseschart;
   constructor(private _caseService: CaseService) { }
 
   ngOnInit() {
     this.selectedYear = new Date().getFullYear().toString();
-    this.initLegalCaseChartChart();
+    this.initForCaseChartChart();
     var $this = this;
 
-    setTimeout(() => {
-      $('#yearpicker').datepicker({
-        format: 'yyyy',
-        viewMode: 'years',
-        minViewMode: 'years',
-      });
+    $('#foryearpicker').datepicker({
+      format: 'yyyy',
+      viewMode: 'years',
+      minViewMode: 'years',
+    });
+    $('#foryearpicker').change(function () {
+      console.log('yearpicker');
+      $this.selectedYear = $(this).val();
+      $this.initForCaseChartChart()
+    });
 
-      $('#yearpicker').change(function () {
-        console.log('yearpicker');
-        $this.selectedYear = $(this).val();
-        $this.initLegalCaseChartChart();
-      });
-      $('#casesFilter').daterangepicker({
-        autoApply: true,
-        locale: {
-          format: 'YYYY-MM-DD'
-        }
-      },
-        function (start, end) {
-          $this.selectedYear = $this.getFormattedDate(start);
-          $this.endDate = $this.getFormattedDate(end);
-          console.log($this.selectedYear);
-          console.log($this.endDate);
-          $this.initLegalCaseChartChart();
-  
-        }
-      );
-    }, 0);
+
+    $('#forcasesFilter').daterangepicker({
+      autoApply: true,
+      locale: {
+        format: 'YYYY-MM-DD'
+      }
+    },
+      function (start, end) {
+        $this.selectedYear = $this.getFormattedDate(start);
+        $this.endDate = $this.getFormattedDate(end);
+        console.log($this.selectedYear);
+        console.log($this.endDate);
+        $this.initForCaseChartChart();
+      }
+    );
+
   }
-
   getFormattedDate(value): string {
     var date = new Date(value);
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
-  initLegalCaseChartChart() {
+  initForCaseChartChart() {
 
     if(this.endDate){
-      this._caseService.getCasesByDate(this.selectedYear, this.endDate).subscribe(
+      this._caseService.getForCasesByDate(this.selectedYear,this.endDate).subscribe(
         result => {
-        //  this.data = result;
-          this.legalCaseChart();
+          this.data = result;
+          this.forCaseChart();
         }
       );
     }
     else{
-      this._caseService.getCasesByYear(this.selectedYear).subscribe(
+      this._caseService.getForCasesByYear(this.selectedYear).subscribe(
         result => {
-        //  this.data = result;
-          this.legalCaseChart();
+          this.data = result;
+          this.forCaseChart();
         }
       );
     }
-    
+ 
   }
 
   
-  legalCaseChart() {
+  forCaseChart() {
     try {
       var $this = this;
       var config = {
@@ -160,23 +154,23 @@ export class CaseChartComponent implements OnInit {
           },
         }
       };
-      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('cases-chart');
+      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('forcases-chart');
       var ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-      if (this.caseschart) {
+      if (this.forcaseschart) {
 
-        this.caseschart.destroy();
-        this.caseschart = new Chart(ctx, config);
+        this.forcaseschart.destroy();
+        this.forcaseschart = new Chart(ctx, config);
       }
       else {
-        this.caseschart = new Chart(ctx, config);
+        this.forcaseschart = new Chart(ctx, config);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  selectCaseTab(value) {
+  selectForCaseTab(value) {
     this.selectedTab = value;
     if (this.selectedTab == 'year') {
       this.yearColor = 'orange';

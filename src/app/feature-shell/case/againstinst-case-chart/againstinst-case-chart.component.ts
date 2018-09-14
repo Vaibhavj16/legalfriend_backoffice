@@ -1,91 +1,88 @@
 import { Chart } from 'chart.js';
 import { CaseService } from './../case.service';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 declare let $;
 
 @Component({
-  selector: 'app-case-chart',
-  templateUrl: './case-chart.component.html',
-  styleUrls: ['./case-chart.component.css'],
+  selector: 'app-againstinst-case-chart',
+  templateUrl: './againstinst-case-chart.component.html',
+  styleUrls: ['./againstinst-case-chart.component.css'],
   providers: [CaseService]
 })
-export class CaseChartComponent implements OnInit {
+export class AgainstinstCaseChartComponent implements OnInit {
 
   data = [];
-  selectedYear: string;
+  againstselectedYear: string;
   selectedTab: string = 'year';
   yearColor: string = 'orange';
   dateColor: string = '';
   years = [];
   minYear = 2015;
   endDate: string = '';
-  caseschart;
+  forcaseschart;
   constructor(private _caseService: CaseService) { }
 
   ngOnInit() {
-    this.selectedYear = new Date().getFullYear().toString();
-    this.initLegalCaseChartChart();
+    this.againstselectedYear = new Date().getFullYear().toString();
+    this.initAgainstCaseChartChart();
     var $this = this;
 
-    setTimeout(() => {
-      $('#yearpicker').datepicker({
-        format: 'yyyy',
-        viewMode: 'years',
-        minViewMode: 'years',
-      });
+    $('#againstyearpicker').datepicker({
+      format: 'yyyy',
+      viewMode: 'years',
+      minViewMode: 'years',
+    });
+    $('#againstyearpicker').change(function () {
+      console.log('yearpicker');
+      $this.againstselectedYear = $(this).val();
+      $this.initAgainstCaseChartChart()
+    });
 
-      $('#yearpicker').change(function () {
-        console.log('yearpicker');
-        $this.selectedYear = $(this).val();
-        $this.initLegalCaseChartChart();
-      });
-      $('#casesFilter').daterangepicker({
-        autoApply: true,
-        locale: {
-          format: 'YYYY-MM-DD'
-        }
-      },
-        function (start, end) {
-          $this.selectedYear = $this.getFormattedDate(start);
-          $this.endDate = $this.getFormattedDate(end);
-          console.log($this.selectedYear);
-          console.log($this.endDate);
-          $this.initLegalCaseChartChart();
-  
-        }
-      );
-    }, 0);
+
+    $('#againstcasesFilter').daterangepicker({
+      autoApply: true,
+      locale: {
+        format: 'YYYY-MM-DD'
+      }
+    },
+      function (start, end) {
+        $this.againstselectedYear = $this.getFormattedDate(start);
+        $this.endDate = $this.getFormattedDate(end);
+        console.log($this.againstselectedYear);
+        console.log($this.endDate);
+        $this.initAgainstCaseChartChart();
+      }
+    );
+
   }
-
   getFormattedDate(value): string {
     var date = new Date(value);
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
-  initLegalCaseChartChart() {
+  initAgainstCaseChartChart() {
 
     if(this.endDate){
-      this._caseService.getCasesByDate(this.selectedYear, this.endDate).subscribe(
+      this._caseService.getAgainstCasesByDate(this.againstselectedYear,this.endDate).subscribe(
         result => {
-        //  this.data = result;
-          this.legalCaseChart();
+          this.data = result;
+          this.againstCaseChart();
         }
       );
     }
     else{
-      this._caseService.getCasesByYear(this.selectedYear).subscribe(
+      this._caseService.getAgainstCasesByYear(this.againstselectedYear).subscribe(
         result => {
-        //  this.data = result;
-          this.legalCaseChart();
+          this.data = result;
+          this.againstCaseChart();
         }
       );
     }
-    
+  
   }
 
   
-  legalCaseChart() {
+  againstCaseChart() {
     try {
       var $this = this;
       var config = {
@@ -160,30 +157,29 @@ export class CaseChartComponent implements OnInit {
           },
         }
       };
-      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('cases-chart');
+      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('againstcases-chart');
       var ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-      if (this.caseschart) {
+      if (this.forcaseschart) {
 
-        this.caseschart.destroy();
-        this.caseschart = new Chart(ctx, config);
+        this.forcaseschart.destroy();
+        this.forcaseschart = new Chart(ctx, config);
       }
       else {
-        this.caseschart = new Chart(ctx, config);
+        this.forcaseschart = new Chart(ctx, config);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  selectCaseTab(value) {
+  selectForCaseTab(value) {
     this.selectedTab = value;
     if (this.selectedTab == 'year') {
       this.yearColor = 'orange';
       this.dateColor = '';
       this.endDate = '';
-      this.selectedYear = new Date().getFullYear().toString();
-
+      this.againstselectedYear = new Date().getFullYear().toString();
     }
     else {
       this.yearColor = '';
@@ -191,4 +187,5 @@ export class CaseChartComponent implements OnInit {
     }
   }
   
+
 }
