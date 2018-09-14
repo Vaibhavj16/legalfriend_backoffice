@@ -1,0 +1,159 @@
+<div class="register-logo">
+  <img src="/assets/dist/img/logo.png" alt="logo" style="width: 40px;">
+  <span style="vertical-align: middle;">
+      <b>Legal</b>Friend</span>
+</div>
+
+<div class="register-box-body">
+  <p class="login-box-msg" id="registermsg">Register a new membership</p>
+  <!-- form container start -->
+  <ng-container *ngIf="!isMailSent">
+    <form [formGroup]="signupForm" (ngSubmit)="registerUser(signupForm.value)">
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('firstName').invalid &&  signupForm.get('firstName').touched">
+        <input type="text" OnlyString="true" class="form-control" placeholder="First name" formControlName="firstName">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div *ngIf="signupForm.get('firstName').invalid &&  signupForm.get('firstName').touched">
+          <small class="text-error">
+            <span>First name is required.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('lastName').invalid &&  signupForm.get('lastName').touched">
+        <input type="text" OnlyString="true" class="form-control" placeholder="Last name" formControlName="lastName">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div *ngIf="signupForm.get('lastName').invalid &&  signupForm.get('lastName').touched">
+          <small class="text-error">
+            <span>Last name is required.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('organisation').invalid &&  signupForm.get('organisation').touched">
+        <input type="text" class="form-control" placeholder="Organisation" formControlName="organisation">
+        <span class="glyphicon glyphicon-home form-control-feedback"></span>
+        <div *ngIf="signupForm.get('organisation').invalid &&  signupForm.get('organisation').touched">
+          <small class="text-error">
+            <span>Organisation name is required.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('addressLine1').invalid &&  signupForm.get('addressLine1').touched">
+        <input type="text" class="form-control" placeholder="Address Line 1" formControlName="addressLine1">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div *ngIf="signupForm.get('addressLine1').invalid &&  signupForm.get('addressLine1').touched">
+          <small class="text-error">
+            <span>Address line1 is required.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('addressLine2').invalid &&  signupForm.get('addressLine2').touched">
+        <input type="text" class="form-control" placeholder="Address Line 2" formControlName="addressLine2">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div *ngIf="signupForm.get('addressLine2').invalid &&  signupForm.get('addressLine2').touched">
+          <small class="text-error">
+            <span>Address line2 is required.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" OnlyNumber="true" [class.control-error]="signupForm.get('postalCode').invalid &&  signupForm.get('postalCode').touched">
+        <input type="text" class="form-control" placeholder="Postal Code" formControlName="postalCode">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div *ngIf="signupForm.get('postalCode').invalid &&  signupForm.get('postalCode').touched">
+          <small class="text-error">
+            <span>{{zipValidationMessage}}</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('email').invalid &&  signupForm.get('email').touched">
+        <input type="email" class="form-control" placeholder="Email" formControlName="email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div *ngIf="signupForm.get('email').invalid &&  signupForm.get('email').touched">
+          <small class="text-error">
+            <span>{{emailValidationMessage}}</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('mobileNumber').invalid &&  signupForm.get('mobileNumber').touched">
+        <input type="text" class="form-control" OnlyNumber="true" placeholder="Mobile Number" formControlName="mobileNumber">
+        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+        <div *ngIf="signupForm.get('mobileNumber').invalid &&  signupForm.get('mobileNumber').touched">
+          <small class="text-error">
+            <span>{{mobileNoValidationMessage}}</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('password').invalid &&  signupForm.get('password').touched">
+        <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div *ngIf="signupForm.get('password').invalid &&  signupForm.get('password').touched">
+          <small class="text-error">
+            <span>{{passwordValidationMessage}}</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback" [class.control-error]="signupForm.get('confirmPassword').invalid &&  signupForm.get('confirmPassword').touched">
+        <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <div *ngIf="signupForm.get('confirmPassword').invalid &&  signupForm.get('confirmPassword').touched">
+          <small class="text-error">
+            <span>Do not match with password.</span>
+          </small>
+        </div>
+      </div>
+      <div class="form-group has-feedback">
+        <select class="form-control" formControlName="role">
+          <option *ngFor="let option of UserType" [ngValue]="option.id">
+            {{ option.name }}
+          </option>
+        </select>
+      </div>
+      <!-- <div class="form-group has-feedback" style="display:none">
+        <select class="form-control" formControlName="status">
+          <option *ngFor="let option of Status" [ngValue]="option.id">
+            {{ option.name }}
+          </option>
+        </select>
+      </div> -->
+      
+      <div class="form-group has-feedback">
+          <select class="form-control" formControlName="subscription">
+            <option *ngFor="let option of Subscription" [ngValue]="option.id">
+              {{ option.name }}
+            </option>
+          </select>
+        </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox" formControlName="termsAndCondition"> I agree to the
+              <a href="#">terms</a>
+            </label>
+          </div>
+        </div>
+        <!-- <div class="col-xs-4"> -->
+          <button type="submit" [disabled]="signupForm.invalid" class="btn btn-signup">Signup</button>
+        <!-- </div> -->
+      </div>
+    </form>
+  
+    <!-- <div [ngBusy]="{busy: busy, message: 'Loading...', backdrop: false, delay: 1000, minDuration: 600}"></div> -->
+    <div class="my-container">
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+       
+    </div>
+
+   
+    
+    <a routerLink="/login" class="text-center">I already have a membership</a>
+  </ng-container>
+  <!-- end form container -->
+  <ng-container *ngIf="isMailSent">
+    <div class="center text-success divMailSentMsg">
+      <p>Thank You..!!</p>
+      <p>We have sent a verification mail in you email. Please check you inbox and confirm.</p>
+    </div>
+    <div class="center">
+      <button type="submit" class="btn btn-primary btn-flat" (click)="redirectToLogin()">Login</button>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,183 @@
+<style>
+  .blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @-moz-keyframes blinker {
+    0% {
+      opacity: 1.0;
+    }
+    50% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+
+  @-webkit-keyframes blinker {
+    0% {
+      opacity: 1.0;
+    }
+    50% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+
+  @keyframes blinker {
+    0% {
+      opacity: 1.0;
+    }
+    50% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+</style>
+<header class="main-header">
+
+  <!-- Logo -->
+  <a routerLink="dashboard" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini">
+      <img src="/assets/dist/img/logo.png" alt="logo" style="width: 40px;">
+    </span>
+    <!-- <b>A</b>LT</span> -->
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg">
+      <img src="/assets/dist/img/logo.png" alt="logo" style="width: 40px;">
+      <b>Legal</b>Friend</span>
+  </a>
+
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div>
+    </div>
+
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+      <div class='pm-button' style="float: left;" id=flash *ngIf="showFlash">
+        <span class="blink_me" style="color:red;"> Subscription is going to end on {{subscriptionEndDate.subscriptionEndDate}}</span>
+        <a href='https://www.payumoney.com/paybypayumoney/#/B734527DC5DCFE348F1AC3A66A2C48BD'>
+          <img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/21.png' />
+        </a>
+      </div>
+      <ul class="nav navbar-nav">
+  
+        <!-- Tasks: style can be found in dropdown.less -->
+        <li class="dropdown tasks-menu" style="display: none">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-flag-o"></i>
+            <span class="label label-danger">9</span>
+          </a>
+          
+        </li>
+        <!-- User Account: style can be found in dropdown.less -->
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+            <span class="hidden-xs">{{userDetails.Name}}</span>
+          </a>
+          <ul class="dropdown-menu" style="width:173px;">
+
+            <li class="profile-li">
+              <a routerLink="profile">Profile</a>
+            </li>
+            <li class="profile-li">
+              <a (click)="signOutButton()">Sign out</a>
+            </li>
+            <!-- Menu Footer-->
+            <!-- <li class="user-footer">
+                <div class="pull-left">
+                  <a routerLink="profile" class="btn btn-default btn-flat">Profile</a>
+                </div>
+  
+              </li>
+  
+              <li class="user-footer">
+  
+                <div class="pull-left">
+                  <a routerLink="../admin/wallet" class="btn btn-default btn-flat">Wallet $250.00</a>
+                </div>
+  
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a routerLink="../admin/referel" class="btn btn-default btn-flat">Referal</a>
+                </div>
+  
+              </li>
+              <li class="user-footer">
+  
+                <div class="pull-left">
+                  <a routerLink="../login" (click)="signOutButton()" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li> -->
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</header>
+<aside class="main-sidebar" style="min-height: 100%;">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+
+    <ul class="sidebar-menu" data-widget="tree">
+      <ng-template [ngxPermissionsOnly]="['ADMIN_LAWYER_FIRM', 'MANAGER_LAWYER_FIRM', 'EMPLOYEE_LAWYER_FIRM',
+        'ADMIN_LAWYER', 'MANAGER_LAWYER', 'EMPLOYEE_LAWYER']">
+        <li [routerLinkActive]="['active']">
+          <a routerLink="dashboard">
+            <i class="fa fa-dashboard"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+      </ng-template>
+
+      <li >
+        <a routerLink="../backoffice/createnotification">
+          <i class="fa fa-bell"></i>
+          <span>Create Notification</span>
+        </a>
+      </li>
+
+    
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+
+<!-- Content Wrapper. Contains page content -->
+<router-outlet></router-outlet>
+<!-- /.content-wrapper -->
+
+<!-- Control Sidebar -->
+
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>

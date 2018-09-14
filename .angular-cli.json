@@ -1,0 +1,88 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "velonic-integration"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/ionicons/dist/css/ionicons.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
+        "../node_modules/bootstrap-daterangepicker/daterangepicker.css",
+        "../node_modules/ngx-select-dropdown/dist/assets/style.css",
+        "../src/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css",
+        "../src/assets/dist/css/skins/_all-skins.min.css",        
+        "../src/assets/dist/css/AdminLTE.min.css",
+        "../src/assets/dist/css/style.css",
+        "../node_modules/fullcalendar/dist/fullcalendar.min.css",
+        "styles.css"
+        
+        
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../src/assets/bower_components/datatables.net/js/jquery.dataTables.min.js",
+        "../node_modules/jquery-ui-dist/jquery-ui.min.js",
+        "../src/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
+        "../node_modules/moment/min/moment.min.js",
+        "../src/assets/dist/js/bootstrap-datepicker.js",
+        "../node_modules/bootstrap-daterangepicker/daterangepicker.js",
+        "../node_modules/fullcalendar/dist/fullcalendar.min.js",
+        "../src/assets/dist/js/jquery.toaster.js",
+        "../src/assets/dist/js/adminlte.min.js",
+        "../src/assets/dist/js/swiper.min.js"
+        
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+  
+}
