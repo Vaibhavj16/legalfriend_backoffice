@@ -14,6 +14,7 @@ import { SystemdashboardService } from './systemdashboard/systemdashboard.servic
 import { OrganizationdetailComponent } from './systemdashboard/organizationdetail/organizationdetail.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CaseChartComponent } from './case/case-chart/case-chart.component';
 
 
 
@@ -32,6 +33,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SystemdashboardComponent,
     UserdetailComponent,
     OrganizationdetailComponent,
+    CaseChartComponent,
   ],
   providers: [AuthService, SystemdashboardService]
 })
