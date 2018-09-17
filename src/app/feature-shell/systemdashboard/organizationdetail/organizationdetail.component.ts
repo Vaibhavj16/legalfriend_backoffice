@@ -73,6 +73,13 @@ export class OrganizationdetailComponent implements OnInit {
         this.name = 'Total Against Cases';
         this.countname= 'Against Case Count';
       }
+      else if(this.service =='org'){
+        this._systemdashService.getOrgUsers('/dash/organizations').subscribe( result => {
+          this.data = result;
+          this.dataSource = new MatTableDataSource(this.data);
+        });    
+        this.name = 'Organizations';
+      }
   }
 }
 

@@ -1,16 +1,16 @@
-<div class="box box-info">
+<!-- <div class="box box-info"> -->
 <div class="box-header">
-    <i class="fa fa-inbox"></i>
-    <h3 class="box-title">For Institution</h3>
+    <!-- <i class="fa fa-inbox"></i> -->
+    <h3 class="box-title"></h3>
     <div class="graph-filter pull-right">
       <ul class="pagination pagination-sm inline">
         <li>
-          <a id="branchBillYear" [style.background-color]="yearColor" (click)="selectForCaseTab('year');">
+          <a  [style.background-color]="yearColor" (click)="selectForCaseTab('year');">
             <b>Yearly</b>
           </a>
         </li>
         <li>
-          <a id="branchBillMonth" [style.background-color]="dateColor" (click)="selectForCaseTab('date');">
+          <a [style.background-color]="dateColor" (click)="selectForCaseTab('date');">
             <b>DateWise</b>
           </a>
         </li>
@@ -27,4 +27,4 @@
   <div class="box-body">
     <canvas id="forcases-chart" style="height: 450px; width: 950px;"></canvas>
   </div>
-</div>
+<!-- </div> -->

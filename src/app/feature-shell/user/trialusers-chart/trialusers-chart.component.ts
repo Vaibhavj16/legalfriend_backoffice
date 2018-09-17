@@ -1,14 +1,16 @@
+import { SystemdashboardService } from './../../systemdashboard/systemdashboard.service';
+import { UserService } from './../user.service';
 import { Chart } from 'chart.js';
-import { CaseService } from './../case.service';
 import { Component, OnInit } from '@angular/core';
 declare let $;
+
 @Component({
-  selector: 'app-forinst-case-chart',
-  templateUrl: './forinst-case-chart.component.html',
-  styleUrls: ['./forinst-case-chart.component.css'],
-  providers: [CaseService]
+  selector: 'app-trialusers-chart',
+  templateUrl: './trialusers-chart.component.html',
+  styleUrls: ['./trialusers-chart.component.css'],
+  providers: [SystemdashboardService]
 })
-export class ForinstCaseChartComponent implements OnInit {
+export class TrialusersChartComponent implements OnInit {
 
   data = [];
   selectedYear: string;
@@ -16,29 +18,27 @@ export class ForinstCaseChartComponent implements OnInit {
   yearColor: string = 'orange';
   dateColor: string = '';
   endDate: string = '';
-  forcaseschart;
-  constructor(private _caseService: CaseService) { }
+  trialuserschart;
+  constructor(private _dashService: SystemdashboardService) { }
 
   ngOnInit() {
     this.selectedYear = new Date().getFullYear().toString();
-
-    setTimeout(() => {
-    this.initForCaseChartChart();
+    this.initTrialUsersChart();
     var $this = this;
 
-    $('#foryearpicker').datepicker({
+    $('#trialyearpicker').datepicker({
       format: 'yyyy',
       viewMode: 'years',
       minViewMode: 'years',
     });
-    $('#foryearpicker').change(function () {
+    $('#trialyearpicker').change(function () {
       console.log('yearpicker');
       $this.selectedYear = $(this).val();
-      $this.initForCaseChartChart()
+      $this.initTrialUsersChart()
     });
 
 
-    $('#forcasesFilter').daterangepicker({
+    $('#trialusersFilter').daterangepicker({
       autoApply: true,
       locale: {
         format: 'YYYY-MM-DD'
@@ -49,31 +49,31 @@ export class ForinstCaseChartComponent implements OnInit {
         $this.endDate = $this.getFormattedDate(end);
         console.log($this.selectedYear);
         console.log($this.endDate);
-        $this.initForCaseChartChart();
+        $this.initTrialUsersChart();
       }
     );
-  }, 3000);
+  
   }
   getFormattedDate(value): string {
     var date = new Date(value);
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
-  initForCaseChartChart() {
+  initTrialUsersChart() {
 
     if(this.endDate){
-      this._caseService.getForCasesByDate(this.selectedYear,this.endDate).subscribe(
+      this._dashService.getTrialUsersByDate(this.selectedYear,this.endDate).subscribe(
         result => {
           this.data = result;
-          this.forCaseChart();
+          this.trialUsersChart();
         }
       );
     }
     else{
-      this._caseService.getForCasesByYear(this.selectedYear).subscribe(
+      this._dashService.getTrialUsers(this.selectedYear).subscribe(
         result => {
           this.data = result;
-          this.forCaseChart();
+          this.trialUsersChart();
         }
       );
     }
@@ -81,7 +81,7 @@ export class ForinstCaseChartComponent implements OnInit {
   }
 
   
-  forCaseChart() {
+  trialUsersChart() {
     try {
       var $this = this;
       var config = {
@@ -89,7 +89,7 @@ export class ForinstCaseChartComponent implements OnInit {
         data: {
           labels: this.data,
           datasets: [{
-            label: "Legal Cases",
+            label: "Trial Users",
             data: this.data,
             backgroundColor: '#3c8dbc',
             datalabels: {
@@ -104,9 +104,9 @@ export class ForinstCaseChartComponent implements OnInit {
               formatter: function (value, context) {
                 if (value.y >= 1000) {
                   value.y = value.y / 1000;
-                  return 'Rs ' + value.y + 'k';
+                  return value.y + 'k';
                 }
-                return 'Rs ' + value.y;
+                return value.y;
               }
             }
           }],
@@ -115,7 +115,7 @@ export class ForinstCaseChartComponent implements OnInit {
 
         options: {
           legend: {
-            display: false
+            display: true
           },
           scales: {
             xAxes: [{
@@ -156,23 +156,23 @@ export class ForinstCaseChartComponent implements OnInit {
           },
         }
       };
-      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('forcases-chart');
+      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('trialusers-chart');
       var ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-      if (this.forcaseschart) {
+      if (this.trialuserschart) {
 
-        this.forcaseschart.destroy();
-        this.forcaseschart = new Chart(ctx, config);
+        this.trialuserschart.destroy();
+        this.trialuserschart = new Chart(ctx, config);
       }
       else {
-        this.forcaseschart = new Chart(ctx, config);
+        this.trialuserschart = new Chart(ctx, config);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  selectForCaseTab(value) {
+  selectTrialTab(value) {
     this.selectedTab = value;
     if (this.selectedTab == 'year') {
       this.yearColor = 'orange';
@@ -186,5 +186,4 @@ export class ForinstCaseChartComponent implements OnInit {
       this.dateColor = 'orange';
     }
   }
-  
 }

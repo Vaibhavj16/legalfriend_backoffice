@@ -68,7 +68,7 @@ export class CaseChartComponent implements OnInit {
     if(this.endDate){
       this._caseService.getCasesByDate(this.selectedYear, this.endDate).subscribe(
         result => {
-        //  this.data = result;
+          this.data = result;
           this.legalCaseChart();
         }
       );
@@ -76,7 +76,7 @@ export class CaseChartComponent implements OnInit {
     else{
       this._caseService.getCasesByYear(this.selectedYear).subscribe(
         result => {
-        //  this.data = result;
+          this.data = result;
           this.legalCaseChart();
         }
       );

@@ -144,7 +144,7 @@
         <!-- small box -->
         <div class="small-box bg-light-blue">
           <div class="inner">
-            <h3>{{totalOrganization}}</h3>
+            <h3>{{oneMonthInActiveUsers}}</h3>
 
             <p>Users Not Logged In Since Last Month</p>
           </div>
@@ -167,6 +167,7 @@
   
   </section>
 
+  <div class="row">
     <section class="col-lg-6 connectedSortable">
      <app-case-chart></app-case-chart>
      <!-- <app-againstinst-case-chart></app-againstinst-case-chart> -->
@@ -174,8 +175,9 @@
 <!-- /.Left col -->
 <!-- right col (We are only adding the ID to make the widgets sortable)-->
     <section class="col-lg-6 connectedSortable">
-      <app-forinst-case-chart></app-forinst-case-chart>
+      <app-trialusers-chart></app-trialusers-chart>
   </section>
+</div>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->

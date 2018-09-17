@@ -1,0 +1,31 @@
+<div class="box box-info">
+<div class="box-header">
+  <i class="fa fa-inbox"></i>
+  <h3 class="box-title"> Trial Users</h3>
+  <div class="graph-filter pull-right">
+    <ul class="pagination pagination-sm inline">
+      <li>
+        <a [style.background-color]="yearColor" (click)="selectTrialTab('year');">
+          <b>Yearly</b>
+        </a>
+      </li>
+      <li>
+        <a [style.background-color]="dateColor" (click)="selectTrialTab('date');">
+          <b>DateWise</b>
+        </a>
+      </li>
+    </ul>
+    <div class="input-group pull-right" style="width:250px">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" class="form-control pull-right" [ngModel]='selectedYear' [ngClass]="{ 'hide' :selectedTab!='year'}" id="trialyearpicker">
+      <input type="text" class="form-control pull-right" [ngClass]="{ 'hide' :selectedTab=='year'}" id="trialusersFilter">
+    </div>
+  </div>
+</div>
+<div class="box-body">
+  <br/>
+  <canvas id="trialusers-chart" style="height: 450px; width: 950px;"></canvas>
+</div>
+</div>

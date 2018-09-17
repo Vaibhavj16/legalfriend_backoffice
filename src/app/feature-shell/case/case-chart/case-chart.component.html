@@ -2,17 +2,17 @@
   <mat-tab-group>
     <mat-tab label="Legal Cases">
       <div class="box-header">
-        <i class="fa fa-inbox"></i>
+        <!-- <i class="fa fa-inbox"></i> -->
         <h3 class="box-title"></h3>
         <div class="graph-filter pull-right">
           <ul class="pagination pagination-sm inline">
             <li>
-              <a id="branchBillYear" [style.background-color]="yearColor" (click)="selectCaseTab('year');">
+              <a  [style.background-color]="yearColor" (click)="selectCaseTab('year');">
                 <b>Yearly</b>
               </a>
             </li>
             <li>
-              <a id="branchBillMonth" [style.background-color]="dateColor" (click)="selectCaseTab('date');">
+              <a  [style.background-color]="dateColor" (click)="selectCaseTab('date');">
                 <b>DateWise</b>
               </a>
             </li>
@@ -31,7 +31,7 @@
       </div>
     </mat-tab>
     <mat-tab label="For Institutional Cases"> 
-      <!-- <app-forinst-case-chart></app-forinst-case-chart> -->
+      <app-forinst-case-chart></app-forinst-case-chart>
      </mat-tab>
     <mat-tab label="Against Institutional Cases">
        <app-againstinst-case-chart></app-againstinst-case-chart>

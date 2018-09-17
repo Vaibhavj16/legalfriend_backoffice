@@ -18,6 +18,8 @@ import { CaseChartComponent } from './case/case-chart/case-chart.component';
 import { MatTabsModule} from '../../../node_modules/@angular/material';
 import { ForinstCaseChartComponent } from './case/forinst-case-chart/forinst-case-chart.component';
 import { AgainstinstCaseChartComponent } from './case/againstinst-case-chart/againstinst-case-chart.component';
+import { UsersChartComponent } from './user/users-chart/users-chart.component';
+import { TrialusersChartComponent } from './user/trialusers-chart/trialusers-chart.component';
 
 
 
@@ -40,6 +42,8 @@ import { AgainstinstCaseChartComponent } from './case/againstinst-case-chart/aga
     CaseChartComponent,
     ForinstCaseChartComponent,
     AgainstinstCaseChartComponent,
+    UsersChartComponent,
+    TrialusersChartComponent,
   ],
   providers: [AuthService, SystemdashboardService],
   exports: [CaseChartComponent]

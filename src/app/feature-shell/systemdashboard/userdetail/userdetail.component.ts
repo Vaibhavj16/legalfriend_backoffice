@@ -57,13 +57,13 @@ export class UserdetailComponent implements OnInit {
             this.title = 'Users Inactive Since Last Month';
           });
       }
-      else if( this.service == 'customerdetails'){
-        this._userService.getAllCustomers(client).subscribe(
-          result => {
-            this.userList = result;
-            this.title = 'Total Customers';
-          });
-        }
+      // else if( this.service == 'customerdetails'){
+      //   this._userService.getAllCustomers(client).subscribe(
+      //     result => {
+      //       this.userList = result;
+      //       this.title = 'Total Customers';
+      //     });
+      //   }
   }
 
 

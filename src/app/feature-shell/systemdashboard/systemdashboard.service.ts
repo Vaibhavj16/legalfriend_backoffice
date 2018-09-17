@@ -28,4 +28,12 @@ export class SystemdashboardService {
   getCases(): Observable<Object[]>{
     return this.apiGateWay.get('/case/all');
   }
+
+  getTrialUsers(year): Observable<any>{
+    return this.apiGateWay.get('dash/trialusers/year?year='+year);
+  }
+
+  getTrialUsersByDate(start,end): Observable<any>{
+    return this.apiGateWay.get('dash/trialusers/date?startDate='+start+'&endDate='+end);
+  }
 }

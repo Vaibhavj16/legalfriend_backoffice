@@ -13,7 +13,7 @@
           <div class="box-body">
             <div class="clearfix"></div>
             <mat-card>
-            <table id="example1" class="table table-bordered table-hover" style="margin-top:5px">
+            <table id="example1" class="table table-bordered table-hover" style="margin-top:5px;  table-layout:fixed;">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -27,7 +27,7 @@
                 <ng-container *ngFor="let item of userList; let i = index">
                   <tr>
                     <td>{{i+1}}</td>
-                    <td>{{item.firstName}} {{item.lastName}}</td>
+                    <td style="word-wrap: break-word;">{{item.firstName}} {{item.lastName}}</td>
                     <td>{{item.email}}</td>
                     <td>{{item.organization}}</td>
                     <td (click)="showMoreDetail(i)">More</td>

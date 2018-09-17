@@ -22,37 +22,46 @@ export class AgainstinstCaseChartComponent implements OnInit {
   forcaseschart;
   constructor(private _caseService: CaseService) { }
 
+  ngAfterViewInit(){
+    
+  }
+
   ngOnInit() {
     this.againstselectedYear = new Date().getFullYear().toString();
-    this.initAgainstCaseChartChart();
+
     var $this = this;
 
-    $('#againstyearpicker').datepicker({
-      format: 'yyyy',
-      viewMode: 'years',
-      minViewMode: 'years',
-    });
-    $('#againstyearpicker').change(function () {
-      console.log('yearpicker');
-      $this.againstselectedYear = $(this).val();
-      $this.initAgainstCaseChartChart()
-    });
+    setTimeout(() => {
 
-
-    $('#againstcasesFilter').daterangepicker({
-      autoApply: true,
-      locale: {
-        format: 'YYYY-MM-DD'
-      }
-    },
-      function (start, end) {
-        $this.againstselectedYear = $this.getFormattedDate(start);
-        $this.endDate = $this.getFormattedDate(end);
-        console.log($this.againstselectedYear);
-        console.log($this.endDate);
-        $this.initAgainstCaseChartChart();
-      }
-    );
+      this.initAgainstCaseChartChart();
+      $('#againstyearpicker').datepicker({
+        format: 'yyyy',
+        viewMode: 'years',
+        minViewMode: 'years',
+      });
+      $('#againstyearpicker').change(function () {
+        console.log('yearpicker');
+        $this.againstselectedYear = $(this).val();
+        $this.initAgainstCaseChartChart()
+      });
+  
+  
+      $('#againstcasesFilter').daterangepicker({
+        autoApply: true,
+        locale: {
+          format: 'YYYY-MM-DD'
+        }
+      },
+        function (start, end) {
+          $this.againstselectedYear = $this.getFormattedDate(start);
+          $this.endDate = $this.getFormattedDate(end);
+          console.log($this.againstselectedYear);
+          console.log($this.endDate);
+          $this.initAgainstCaseChartChart();
+        }
+      );
+    }, 3000);
+  
 
   }
   getFormattedDate(value): string {
@@ -173,7 +182,7 @@ export class AgainstinstCaseChartComponent implements OnInit {
     }
   }
 
-  selectForCaseTab(value) {
+  selectAgainstCaseTab(value) {
     this.selectedTab = value;
     if (this.selectedTab == 'year') {
       this.yearColor = 'orange';
