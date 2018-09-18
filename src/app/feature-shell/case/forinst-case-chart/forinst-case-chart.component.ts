@@ -23,7 +23,7 @@ export class ForinstCaseChartComponent implements OnInit {
     this.selectedYear = new Date().getFullYear().toString();
 
     setTimeout(() => {
-    this.initForCaseChartChart();
+    this.initForCaseChart();
     var $this = this;
 
     $('#foryearpicker').datepicker({
@@ -34,7 +34,7 @@ export class ForinstCaseChartComponent implements OnInit {
     $('#foryearpicker').change(function () {
       console.log('yearpicker');
       $this.selectedYear = $(this).val();
-      $this.initForCaseChartChart()
+      $this.initForCaseChart()
     });
 
 
@@ -49,7 +49,7 @@ export class ForinstCaseChartComponent implements OnInit {
         $this.endDate = $this.getFormattedDate(end);
         console.log($this.selectedYear);
         console.log($this.endDate);
-        $this.initForCaseChartChart();
+        $this.initForCaseChart();
       }
     );
   }, 3000);
@@ -59,7 +59,7 @@ export class ForinstCaseChartComponent implements OnInit {
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   }
 
-  initForCaseChartChart() {
+  initForCaseChart() {
 
     if(this.endDate){
       this._caseService.getForCasesByDate(this.selectedYear,this.endDate).subscribe(

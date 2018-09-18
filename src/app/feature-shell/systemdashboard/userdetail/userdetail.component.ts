@@ -4,7 +4,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../../shared/models/user/user';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import Chart from 'chart.js';
 import {MatPaginator, MatSort, MatTableDataSource, MatTabGroup} from '@angular/material';
 
 @Component({
@@ -21,22 +20,19 @@ import {MatPaginator, MatSort, MatTableDataSource, MatTabGroup} from '@angular/m
 })
 export class UserdetailComponent implements OnInit {
 
-
-  isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
-  expandedElement: any;
-
   title : any
    service: any;
-   userList: User[];
-   moreIndex:number;
+   data=[];
+   displayedColumns = ['name','email','organization'];
+   dataSource=new MatTableDataSource;
+   name;
+   isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
+   expandedElement: any;
+
   constructor(private _systemdashService: SystemdashboardService, private _activatedRoute: ActivatedRoute
   ,private _userService: UserService) { }
 
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
 
@@ -47,28 +43,28 @@ export class UserdetailComponent implements OnInit {
     
       if(this.service == 'trial') {
             this._systemdashService.getUsers('/trialusers').subscribe(result => {
-            this.userList = result;
             this.title = 'Trial Users';
+            result.forEach(element => this.data.push(element, { detailRow: true, element }));
+            this.dataSource = new MatTableDataSource(this.data);
+            this.dataSource.paginator = this.paginator;
+            
           });
       }
       else if(this.service == 'inactiveusers'){
            this._systemdashService.getUsers('/inactiveusers').subscribe(result => {
-            this.userList = result;
             this.title = 'Users Inactive Since Last Month';
+            result.forEach(element => this.data.push(element, { detailRow: true, element }));
+            this.dataSource = new MatTableDataSource(this.data);
+            this.dataSource.paginator = this.paginator;
           });
       }
-      // else if( this.service == 'customerdetails'){
-      //   this._userService.getAllCustomers(client).subscribe(
-      //     result => {
-      //       this.userList = result;
-      //       this.title = 'Total Customers';
-      //     });
-      //   }
   }
 
-
-  showMoreDetail(index){
-    this.moreIndex=index;
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
+
 }
 

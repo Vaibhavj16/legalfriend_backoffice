@@ -8,7 +8,7 @@ declare let $;
   selector: 'app-trialusers-chart',
   templateUrl: './trialusers-chart.component.html',
   styleUrls: ['./trialusers-chart.component.css'],
-  providers: [SystemdashboardService]
+  providers: [UserService]
 })
 export class TrialusersChartComponent implements OnInit {
 
@@ -19,7 +19,7 @@ export class TrialusersChartComponent implements OnInit {
   dateColor: string = '';
   endDate: string = '';
   trialuserschart;
-  constructor(private _dashService: SystemdashboardService) { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit() {
     this.selectedYear = new Date().getFullYear().toString();
@@ -62,7 +62,7 @@ export class TrialusersChartComponent implements OnInit {
   initTrialUsersChart() {
 
     if(this.endDate){
-      this._dashService.getTrialUsersByDate(this.selectedYear,this.endDate).subscribe(
+      this._userService.getTrialUsersByDate(this.selectedYear,this.endDate).subscribe(
         result => {
           this.data = result;
           this.trialUsersChart();
@@ -70,7 +70,7 @@ export class TrialusersChartComponent implements OnInit {
       );
     }
     else{
-      this._dashService.getTrialUsers(this.selectedYear).subscribe(
+      this._userService.getTrialUsers(this.selectedYear).subscribe(
         result => {
           this.data = result;
           this.trialUsersChart();

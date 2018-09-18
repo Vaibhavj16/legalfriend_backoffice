@@ -38,88 +38,41 @@ export class UserService {
         return this.apiGateWay.get<UserModel>(getUser + userId);
     }
 
-    getDailyLogin(type, clientId,startDate,endDate): Observable<any> {
-        if(type=='date'){
-            return this.apiGateWay.get('usermanagement/customers/date/online'+clientId+'&startDate='+
-            startDate+'&endDate='+endDate);
-        }
-        else if(type == 'week'){
-            return this.apiGateWay.get('usermanagement/customers/week/online'+clientId);
-        }
-        else{
-            return this.apiGateWay.get('usermanagement/customers/month/online'+clientId);
-        }
-    }
-
-    getDailyLoginUser(type, clientId, startDate,endDate): Observable<any> {
-        if(type=='date'){
-            return this.apiGateWay.get('usermanagement/date/online'+clientId+'&startDate='+
-            startDate+'&endDate='+endDate);
-        }
-        else if(type=='month'){
-            return this.apiGateWay.get('usermanagement/month/online'+clientId);
-        }
-        else {
-        return this.apiGateWay.get('usermanagement/week/online'+clientId);
-        }
-    }
 
     changepassword(customerData: ChangePassword): Observable<any> {
 
         return this.apiGateWay.post<ChangePassword>(
-          'usermanagement/changePassword',
-          JSON.stringify(customerData)
+            'usermanagement/changePassword',
+            JSON.stringify(customerData)
         );
-      }
+    }
 
     getActiveEmployees(clientId): Observable<any> {
-        return this.apiGateWay.get('usermanagement/customers/active'+clientId);
+        return this.apiGateWay.get('usermanagement/customers/active' + clientId);
     }
 
-    getAllCustomers(clientId): Observable<any>{
-        return this.apiGateWay.get('usermanagement/allcustomers'+clientId);
+    getAllCustomers(clientId): Observable<any> {
+        return this.apiGateWay.get('usermanagement/allcustomers' + clientId);
     }
 
-    getAllCustomerCount(clientId, type,startDate,endDate): Observable<any> {
-        if(type == 'date'){
-            return this.apiGateWay.get('usermanagement/allcustomers/date'+clientId+'&startDate='+
-            startDate+'&endDate='+endDate);
-        }
-        else if(type == 'month'){
-            return this.apiGateWay.get('usermanagement/allcustomers/month'+clientId);
-        }
-        else{
-            return this.apiGateWay.get('usermanagement/allcustomers/week'+clientId);
-        }
-        
-    }    
-
-    getTrialCustomersCount(clientId, type,startDate,endDate): Observable<any> {
-        if(type == 'date'){
-            return this.apiGateWay.get('usermanagement/trial/customers/date'+clientId+'&startDate='+
-            startDate+'&endDate='+endDate);
-        }
-        else if(type == 'month'){
-            return this.apiGateWay.get('usermanagement/trial/customers/month'+clientId);
-        }
-        else{
-            return this.apiGateWay.get('usermanagement/trial/customers/week'+clientId);
-        }
-        
+    getTrialUsers(year): Observable<any> {
+        return this.apiGateWay.get('dash/trialusers/year?year=' + year);
     }
 
-    getPaidCustomersCount(clientId, type,startDate,endDate): Observable<any> {
-        if(type == 'date'){
-            return this.apiGateWay.get('usermanagement/trial/customers/date'+clientId+'&startDate='+
-            startDate+'&endDate='+endDate);
-        }
-        else if(type == 'month'){
-            return this.apiGateWay.get('usermanagement/paid/customers/month'+clientId);
-        }
-        else{
-            return this.apiGateWay.get('usermanagement/paid/customers/week'+clientId);
-        }
-        
+    getTrialUsersByDate(start, end): Observable<any> {
+        return this.apiGateWay.get('dash/trialusers/date?startDate=' + start + '&endDate=' + end);
+    }
+
+    getPremiumUsers(year): Observable<any> {
+        return this.apiGateWay.get('dash/premiumusers/year?year=' + year);
+    }
+
+    getPremiumUsersByDate(start, end): Observable<any> {
+        return this.apiGateWay.get('dash/premiumusers/date?startDate=' + start + '&endDate=' + end);
+    }
+
+    getUsersChartData(): Observable<any> {
+        return this.apiGateWay.get('usermanagement/users');
     }
 
 }

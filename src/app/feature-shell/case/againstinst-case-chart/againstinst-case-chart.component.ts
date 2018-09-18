@@ -31,7 +31,7 @@ export class AgainstinstCaseChartComponent implements OnInit {
 
     var $this = this;
 
-    setTimeout(() => {
+    //setTimeout(() => {
 
       this.initAgainstCaseChartChart();
       $('#againstyearpicker').datepicker({
@@ -60,7 +60,7 @@ export class AgainstinstCaseChartComponent implements OnInit {
           $this.initAgainstCaseChartChart();
         }
       );
-    }, 3000);
+  //  }, 3000);
   
 
   }

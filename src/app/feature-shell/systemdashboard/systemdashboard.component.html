@@ -23,7 +23,7 @@
 </style>
 <div class="content-wrapper">
   <div class="page-heading">
-   Back Office
+   Dashboard
   </div>
   <!-- Main content -->
   <section class="content">
@@ -133,7 +133,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a (click)="showOrgDetail('/backoffice/orgdetails', 'org')" class="small-box-footer">More info
+          <a class="small-box-footer">More info
             <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -171,13 +171,16 @@
     <section class="col-lg-6 connectedSortable">
      <app-case-chart></app-case-chart>
      <!-- <app-againstinst-case-chart></app-againstinst-case-chart> -->
+     <app-users-chart></app-users-chart>
     </section>
 <!-- /.Left col -->
 <!-- right col (We are only adding the ID to make the widgets sortable)-->
     <section class="col-lg-6 connectedSortable">
       <app-trialusers-chart></app-trialusers-chart>
   </section>
+
 </div>
+
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->

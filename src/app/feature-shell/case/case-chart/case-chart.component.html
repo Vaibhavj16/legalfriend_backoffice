@@ -34,7 +34,10 @@
       <app-forinst-case-chart></app-forinst-case-chart>
      </mat-tab>
     <mat-tab label="Against Institutional Cases">
-       <app-againstinst-case-chart></app-againstinst-case-chart>
+        <ng-template matTabContent>
+            New Content
+            <app-againstinst-case-chart></app-againstinst-case-chart>
+          </ng-template>  
       </mat-tab>
   </mat-tab-group>
 </div>

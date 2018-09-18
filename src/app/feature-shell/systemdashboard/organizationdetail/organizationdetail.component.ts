@@ -31,7 +31,7 @@ export class OrganizationdetailComponent implements OnInit {
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    
   }
   
   constructor(private _activatedRoute: ActivatedRoute, private _systemdashService: SystemdashboardService) { }
@@ -42,44 +42,51 @@ export class OrganizationdetailComponent implements OnInit {
       });
     
       if(this.service =='user'){
-        this._systemdashService.getOrgUsers('/users/org/totalusers/').subscribe( result => {
+        this._systemdashService.getData('/users/org/totalusers/').subscribe( result => {
           this.data = result;
           this.dataSource = new MatTableDataSource(this.data);
+          this.dataSource.paginator = this.paginator;
         });    
         this.name = 'Total Users';
         this.countname= 'Users Count';
       }
       else if(this.service =='case'){
-        this._systemdashService.getOrgUsers('/case/org/').subscribe( result => {
+        this._systemdashService.getData('/case/org/').subscribe( result => {
           this.data = result;
           this.dataSource = new MatTableDataSource(this.data);
+          this.dataSource.paginator = this.paginator;
         });    
         this.name = 'Total Cases';
         this.countname= 'Case Count';
       }
       else if(this.service =='for'){
-        this._systemdashService.getOrgUsers('/case/org/for').subscribe( result => {
+        this._systemdashService.getData('/case/org/for').subscribe( result => {
           this.data = result;
           this.dataSource = new MatTableDataSource(this.data);
+          this.dataSource.paginator = this.paginator;
         });    
         this.name = 'Total For Cases';
         this.countname= 'For Case Count';
       }
       else if(this.service =='against'){
-        this._systemdashService.getOrgUsers('/case/org/against').subscribe( result => {
+        this._systemdashService.getData('/case/org/against').subscribe( result => {
           this.data = result;
           this.dataSource = new MatTableDataSource(this.data);
+          this.dataSource.paginator = this.paginator;
         });    
         this.name = 'Total Against Cases';
         this.countname= 'Against Case Count';
       }
       else if(this.service =='org'){
-        this._systemdashService.getOrgUsers('/dash/organizations').subscribe( result => {
+        this._systemdashService.getData('/dash/organizations').subscribe( result => {
           this.data = result;
           this.dataSource = new MatTableDataSource(this.data);
+          this.dataSource.paginator = this.paginator;
         });    
         this.name = 'Organizations';
       }
+
+    
   }
 }
 

@@ -22,7 +22,6 @@ import { UsersChartComponent } from './user/users-chart/users-chart.component';
 import { TrialusersChartComponent } from './user/trialusers-chart/trialusers-chart.component';
 
 
-
 @NgModule({
   imports: [
     SelectDropDownModule,
