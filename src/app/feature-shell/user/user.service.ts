@@ -75,4 +75,8 @@ export class UserService {
         return this.apiGateWay.get('usermanagement/users');
     }
 
+    getUserCountByRole(): Observable<any> {
+        return this.apiGateWay.get('dash/role/premiumusers');
+    }
+
 }

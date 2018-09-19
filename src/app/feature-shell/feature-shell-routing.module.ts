@@ -9,6 +9,7 @@ import { LFAuthantication } from '../shared/services/lfAuthantication-service';
 import { NgxPermissionsGuard, NgxPermissionsService } from 'ngx-permissions';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+import { TotaluserComponent } from './user/totaluser/totaluser.component';
 
 const featureShellRoutes: Routes = [
     {
@@ -21,6 +22,7 @@ const featureShellRoutes: Routes = [
             { path: 'orgdetails', component: OrganizationdetailComponent },
             { path: '', loadChildren: 'app/feature-shell/admin/admin.module#AdminModule' },
             { path: '', redirectTo: 'backoffice', pathMatch: 'full' },
+            { path: 'totalusers', component: TotaluserComponent}
         ],
         },
    

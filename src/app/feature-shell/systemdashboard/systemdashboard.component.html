@@ -97,7 +97,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a  (click)="showOrgDetail('/backoffice/orgdetails', 'user')" class="small-box-footer">More info
+          <a  (click)="showUserDetail('backoffice/totalusers','byrole')" class="small-box-footer">More info
             <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -169,9 +169,9 @@
 
   <div class="row">
     <section class="col-lg-6 connectedSortable">
-     <app-case-chart></app-case-chart>
+        <app-users-chart></app-users-chart>
+        <app-case-chart></app-case-chart>
      <!-- <app-againstinst-case-chart></app-againstinst-case-chart> -->
-     <app-users-chart></app-users-chart>
     </section>
 <!-- /.Left col -->
 <!-- right col (We are only adding the ID to make the widgets sortable)-->

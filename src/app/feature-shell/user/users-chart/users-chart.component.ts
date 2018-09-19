@@ -89,7 +89,7 @@ export class UsersChartComponent implements OnInit {
         data: {
           labels: this.data,
           datasets: [{
-            label: "Legal Cases",
+            label: "Users",
             data: this.data,
             backgroundColor: '#3c8dbc',
             datalabels: {
@@ -115,7 +115,7 @@ export class UsersChartComponent implements OnInit {
 
         options: {
           legend: {
-            display: false
+            display: true
           },
           scales: {
             xAxes: [{
@@ -179,7 +179,7 @@ export class UsersChartComponent implements OnInit {
       this.dateColor = '';
       this.endDate = '';
       this.selectedYear = new Date().getFullYear().toString();
-
+      this.initUsersChart();
     }
     else {
       this.yearColor = '';

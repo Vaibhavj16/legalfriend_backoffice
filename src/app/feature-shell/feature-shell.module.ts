@@ -20,6 +20,7 @@ import { ForinstCaseChartComponent } from './case/forinst-case-chart/forinst-cas
 import { AgainstinstCaseChartComponent } from './case/againstinst-case-chart/againstinst-case-chart.component';
 import { UsersChartComponent } from './user/users-chart/users-chart.component';
 import { TrialusersChartComponent } from './user/trialusers-chart/trialusers-chart.component';
+import { TotaluserComponent } from './user/totaluser/totaluser.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TrialusersChartComponent } from './user/trialusers-chart/trialusers-cha
     AgainstinstCaseChartComponent,
     UsersChartComponent,
     TrialusersChartComponent,
+    TotaluserComponent,
   ],
   providers: [AuthService, SystemdashboardService],
   exports: [CaseChartComponent]

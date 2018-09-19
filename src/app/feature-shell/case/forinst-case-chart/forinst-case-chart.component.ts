@@ -1,6 +1,6 @@
 import { Chart } from 'chart.js';
 import { CaseService } from './../case.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 declare let $;
 @Component({
   selector: 'app-forinst-case-chart',
@@ -17,13 +17,13 @@ export class ForinstCaseChartComponent implements OnInit {
   dateColor: string = '';
   endDate: string = '';
   forcaseschart;
+
+  // @ViewChild('forcases-chart') chartElement;
+
   constructor(private _caseService: CaseService) { }
 
   ngOnInit() {
     this.selectedYear = new Date().getFullYear().toString();
-
-    setTimeout(() => {
-    this.initForCaseChart();
     var $this = this;
 
     $('#foryearpicker').datepicker({
@@ -52,7 +52,8 @@ export class ForinstCaseChartComponent implements OnInit {
         $this.initForCaseChart();
       }
     );
-  }, 3000);
+
+  this.initForCaseChart();
   }
   getFormattedDate(value): string {
     var date = new Date(value);
@@ -89,7 +90,7 @@ export class ForinstCaseChartComponent implements OnInit {
         data: {
           labels: this.data,
           datasets: [{
-            label: "Legal Cases",
+            label: "For Institutional Cases",
             data: this.data,
             backgroundColor: '#3c8dbc',
             datalabels: {
@@ -156,7 +157,7 @@ export class ForinstCaseChartComponent implements OnInit {
           },
         }
       };
-      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('forcases-chart');
+      var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('forcases-chart');;
       var ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
       if (this.forcaseschart) {

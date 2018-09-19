@@ -1,5 +1,5 @@
 <div class="box box-info">
-  <mat-tab-group>
+  <mat-tab-group (selectedTabChange)="tabClick($event)">
     <mat-tab label="Legal Cases">
       <div class="box-header">
         <!-- <i class="fa fa-inbox"></i> -->
@@ -34,10 +34,7 @@
       <app-forinst-case-chart></app-forinst-case-chart>
      </mat-tab>
     <mat-tab label="Against Institutional Cases">
-        <ng-template matTabContent>
-            New Content
             <app-againstinst-case-chart></app-againstinst-case-chart>
-          </ng-template>  
       </mat-tab>
   </mat-tab-group>
 </div>

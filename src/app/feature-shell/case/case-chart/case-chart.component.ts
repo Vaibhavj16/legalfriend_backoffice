@@ -1,3 +1,5 @@
+import { AgainstinstCaseChartComponent } from './../againstinst-case-chart/againstinst-case-chart.component';
+import { ForinstCaseChartComponent } from './../forinst-case-chart/forinst-case-chart.component';
 import { Chart } from 'chart.js';
 import { CaseService } from './../case.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,6 +23,7 @@ export class CaseChartComponent implements OnInit {
   minYear = 2015;
   endDate: string = '';
   caseschart;
+
   constructor(private _caseService: CaseService) { }
 
   ngOnInit() {
@@ -190,5 +193,16 @@ export class CaseChartComponent implements OnInit {
       this.dateColor = 'orange';
     }
   }
-  
+
+  tabClick(tab){
+    // if(tab.tab.textLabel=='For Institutional Cases'){
+    //   const ob= new ForinstCaseChartComponent(this._caseService);
+    //   ob.ngOnInit(); 
+    // }
+    // else if(tab.tab.textLabel=='Against Institutional Cases'){
+    //   const ob= new AgainstinstCaseChartComponent(this._caseService);
+    //   ob.ngOnInit(); 
+    // }
+  }
+
 }
