@@ -40,7 +40,6 @@ export class AgainstinstCaseChartComponent implements OnInit {
         minViewMode: 'years',
       });
       $('#againstyearpicker').change(function () {
-        console.log('yearpicker');
         $this.againstselectedYear = $(this).val();
         $this.initAgainstCaseChartChart()
       });
@@ -55,8 +54,6 @@ export class AgainstinstCaseChartComponent implements OnInit {
         function (start, end) {
           $this.againstselectedYear = $this.getFormattedDate(start);
           $this.endDate = $this.getFormattedDate(end);
-          console.log($this.againstselectedYear);
-          console.log($this.endDate);
           $this.initAgainstCaseChartChart();
         }
       );

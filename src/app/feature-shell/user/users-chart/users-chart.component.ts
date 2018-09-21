@@ -31,7 +31,6 @@ export class UsersChartComponent implements OnInit {
       minViewMode: 'years',
     });
     $('#userchartyearpicker').change(function () {
-      console.log('yearpicker');
       $this.selectedYear = $(this).val();
       $this.initUsersChart()
     });
@@ -46,8 +45,6 @@ export class UsersChartComponent implements OnInit {
       function (start, end) {
         $this.selectedYear = $this.getFormattedDate(start);
         $this.endDate = $this.getFormattedDate(end);
-        console.log($this.selectedYear);
-        console.log($this.endDate);
         $this.initUsersChart();
       }
     );

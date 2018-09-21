@@ -18,7 +18,6 @@ export class ForinstCaseChartComponent implements OnInit {
   endDate: string = '';
   forcaseschart;
 
-  // @ViewChild('forcases-chart') chartElement;
 
   constructor(private _caseService: CaseService) { }
 
@@ -32,7 +31,6 @@ export class ForinstCaseChartComponent implements OnInit {
       minViewMode: 'years',
     });
     $('#foryearpicker').change(function () {
-      console.log('yearpicker');
       $this.selectedYear = $(this).val();
       $this.initForCaseChart()
     });
@@ -47,8 +45,6 @@ export class ForinstCaseChartComponent implements OnInit {
       function (start, end) {
         $this.selectedYear = $this.getFormattedDate(start);
         $this.endDate = $this.getFormattedDate(end);
-        console.log($this.selectedYear);
-        console.log($this.endDate);
         $this.initForCaseChart();
       }
     );

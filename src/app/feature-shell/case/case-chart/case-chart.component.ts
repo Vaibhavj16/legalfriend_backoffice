@@ -20,7 +20,6 @@ export class CaseChartComponent implements OnInit {
   yearColor: string = 'orange';
   dateColor: string = '';
   years = [];
-  minYear = 2015;
   endDate: string = '';
   caseschart;
 
@@ -39,7 +38,6 @@ export class CaseChartComponent implements OnInit {
       });
 
       $('#yearpicker').change(function () {
-        console.log('yearpicker');
         $this.selectedYear = $(this).val();
         $this.initLegalCaseChartChart();
       });
@@ -52,8 +50,6 @@ export class CaseChartComponent implements OnInit {
         function (start, end) {
           $this.selectedYear = $this.getFormattedDate(start);
           $this.endDate = $this.getFormattedDate(end);
-          console.log($this.selectedYear);
-          console.log($this.endDate);
           $this.initLegalCaseChartChart();
   
         }
@@ -195,14 +191,14 @@ export class CaseChartComponent implements OnInit {
   }
 
   tabClick(tab){
-    // if(tab.tab.textLabel=='For Institutional Cases'){
-    //   const ob= new ForinstCaseChartComponent(this._caseService);
-    //   ob.ngOnInit(); 
-    // }
-    // else if(tab.tab.textLabel=='Against Institutional Cases'){
-    //   const ob= new AgainstinstCaseChartComponent(this._caseService);
-    //   ob.ngOnInit(); 
-    // }
+    if(tab.tab.textLabel=='For Institutional Cases'){
+      const ob= new ForinstCaseChartComponent(this._caseService);
+      ob.ngOnInit(); 
+    }
+    else if(tab.tab.textLabel=='Against Institutional Cases'){
+      const ob= new AgainstinstCaseChartComponent(this._caseService);
+      ob.ngOnInit(); 
+    }
   }
 
 }

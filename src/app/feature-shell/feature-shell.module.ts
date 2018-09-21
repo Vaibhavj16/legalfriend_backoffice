@@ -21,6 +21,7 @@ import { AgainstinstCaseChartComponent } from './case/againstinst-case-chart/aga
 import { UsersChartComponent } from './user/users-chart/users-chart.component';
 import { TrialusersChartComponent } from './user/trialusers-chart/trialusers-chart.component';
 import { TotaluserComponent } from './user/totaluser/totaluser.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { TotaluserComponent } from './user/totaluser/totaluser.component';
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    RecaptchaModule.forRoot()
   ],
   declarations: [FeatureShellComponent,
     SystemdashboardComponent,

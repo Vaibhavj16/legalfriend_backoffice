@@ -12,8 +12,8 @@
 
           <div class="box-body">
             <div class="clearfix"></div>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-            <a routerLink="/backoffice/dashboard" class="btn btn-block btn-default pull-right" style="width:100px">Back</a>
+            <a routerLink="/backoffice/dashboard" class="btn btn-default" style="width:100px">Back</a>
+            <input matInput class="pull-right" (keyup)="applyFilter($event.target.value)" placeholder="Search">
             <div>
               <br/>
             </div>

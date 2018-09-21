@@ -32,7 +32,6 @@ export class TrialusersChartComponent implements OnInit {
       minViewMode: 'years',
     });
     $('#trialyearpicker').change(function () {
-      console.log('yearpicker');
       $this.selectedYear = $(this).val();
       $this.initTrialUsersChart()
     });
@@ -47,8 +46,6 @@ export class TrialusersChartComponent implements OnInit {
       function (start, end) {
         $this.selectedYear = $this.getFormattedDate(start);
         $this.endDate = $this.getFormattedDate(end);
-        console.log($this.selectedYear);
-        console.log($this.endDate);
         $this.initTrialUsersChart();
       }
     );
