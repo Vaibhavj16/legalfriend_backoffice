@@ -1,3 +1,5 @@
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -9,6 +11,8 @@ import { AutocompleteModule } from 'ng2-input-autocomplete';
     CommonModule,
     AdminRoutingModule,
     CKEditorModule,
+    MatCardModule,
+    MatTableModule,
     AutocompleteModule.forRoot()
   ],
   declarations: [CreateNotificationComponent]

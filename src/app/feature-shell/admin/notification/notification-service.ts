@@ -33,4 +33,8 @@ export class NotificationService {
             'notification', data
         );
     }
+
+    getNotificationList(): Observable<any>{
+        return this.apiGateWay.get('dash/notification/list');
+    }
 }

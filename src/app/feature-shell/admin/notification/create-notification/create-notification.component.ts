@@ -1,13 +1,22 @@
+import { MatTableDataSource } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification-service';
 import { EmailModel } from './email.model';
 import { StorageService } from '../../../../shared/services/storage.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 declare let $;
 @Component({
   selector: 'app-create-notification',
   templateUrl: './create-notification.component.html',
   styleUrls: ['./create-notification.component.css'],
-  providers: [NotificationService]
+  providers: [NotificationService],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
+      state('expanded', style({ height: '*', visibility: 'visible' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class CreateNotificationComponent implements OnInit {
   arNotificationType: any[] = [];
@@ -23,11 +32,29 @@ export class CreateNotificationComponent implements OnInit {
   inputChanged: any = '';
   wikiItems: any[] = [];
   autoCompleteConfig: any = { 'placeholder': 'Type Email', 'sourceField': ['name'] };
+
+  data=[];
+  displayedColumns = ['subject','sendto','createdby','creationdate'];
+  dataSource=new MatTableDataSource;
+  isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
+  expandedElement: any;
+
   constructor(private _notificationService: NotificationService,
     private _storageService: StorageService) { }
 
   ngOnInit() {
     this.setNotificationType();
+    this.initNotificationList();
+  }
+
+  initNotificationList(){
+
+    this._notificationService.getNotificationList().subscribe(
+      result=>{
+        this.data = result;
+        this.dataSource = new MatTableDataSource(this.data);
+      }
+    );
   }
 
   onSelect(item: any) {
